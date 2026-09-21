@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import PhotoGrid from '../components/PhotoGrid';
 import { posts } from '../data/posts';
 import { colors } from '../theme/colors';
+import { ICON_SIZE } from '../theme/metrics';
 import { imageUrl } from '../utils/image';
 
 const EXPLORE_COUNT = 24;
@@ -20,7 +21,7 @@ export default function SearchScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <View style={styles.searchBar}>
-        <Ionicons name="search" size={18} color={colors.muted} />
+        <Ionicons name="search" size={ICON_SIZE.small} color={colors.muted} />
         <TextInput
           style={styles.input}
           placeholder="Pesquisar"

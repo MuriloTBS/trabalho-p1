@@ -3,6 +3,7 @@ import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react
 import Avatar from '../components/Avatar';
 import { notifications } from '../data/notifications';
 import { colors } from '../theme/colors';
+import { AVATAR_SIZE, RADIUS } from '../theme/metrics';
 
 // Uma linha de notificação. Sem miniatura = "começou a seguir", então mostra botão Seguir.
 function NotificationItem({ item }) {
@@ -10,7 +11,7 @@ function NotificationItem({ item }) {
 
   return (
     <View style={styles.item}>
-      <Avatar uri={item.user.avatar} size={44} />
+      <Avatar uri={item.user.avatar} size={AVATAR_SIZE.activity} />
       <Text style={styles.text}>
         <Text style={styles.username}>{item.user.username} </Text>
         {item.text} <Text style={styles.time}>{item.time}</Text>
@@ -67,13 +68,13 @@ const styles = StyleSheet.create({
     color: colors.muted,
   },
   thumb: {
-    width: 44,
-    height: 44,
+    width: AVATAR_SIZE.activity,
+    height: AVATAR_SIZE.activity,
     backgroundColor: colors.border,
   },
   followButton: {
     backgroundColor: colors.primary,
-    borderRadius: 6,
+    borderRadius: RADIUS.small,
     paddingHorizontal: 16,
     paddingVertical: 7,
   },
@@ -83,7 +84,7 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
   },
   followText: {
-    color: '#fff',
+    color: colors.background,
     fontWeight: '600',
   },
   followingText: {

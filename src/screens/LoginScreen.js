@@ -1,15 +1,17 @@
 import { useState } from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import PrimaryButton from '../components/PrimaryButton';
 import { colors } from '../theme/colors';
+import { RADIUS } from '../theme/metrics';
 
-// Tela 1: login. Qualquer usuário/senha preenchidos entram no app (é só um mock).
+// Tela 1: login. É um mock: qualquer usuário/senha preenchidos entram, sem validar credenciais.
 export default function LoginScreen({ navigation }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const canSubmit = username.trim() !== '' && password !== '';
 
-  // `replace` troca a tela de login pelo app, então o botão "voltar" não retorna ao login
+  // `replace` (e não `navigate`) evita que o botão "voltar" leve de volta ao login
   const handleLogin = () => navigation.replace('Main');
 
   return (
@@ -33,14 +35,12 @@ export default function LoginScreen({ navigation }) {
         onChangeText={setPassword}
       />
 
-      <TouchableOpacity
-        style={[styles.button, !canSubmit && styles.buttonDisabled]}
+      <PrimaryButton
+        title="Entrar"
         disabled={!canSubmit}
         onPress={handleLogin}
-      >
-        <Text style={styles.buttonText}>Entrar</Text>
-      </TouchableOpacity>
-
+        style={styles.button}
+      />
       <Text style={styles.forgot}>Esqueceu a senha?</Text>
 
       <View style={styles.footer}>
@@ -71,23 +71,12 @@ const styles = StyleSheet.create({
     backgroundColor: colors.inputBackground,
     borderWidth: 1,
     borderColor: colors.border,
-    borderRadius: 6,
+    borderRadius: RADIUS.small,
     padding: 12,
     marginBottom: 10,
   },
   button: {
-    backgroundColor: colors.primary,
-    borderRadius: 8,
-    padding: 12,
-    alignItems: 'center',
     marginTop: 6,
-  },
-  buttonDisabled: {
-    opacity: 0.4,
-  },
-  buttonText: {
-    color: '#fff',
-    fontWeight: '600',
   },
   forgot: {
     textAlign: 'center',

@@ -7,6 +7,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import SearchScreen from '../screens/SearchScreen';
 import { currentUser } from '../data/users';
 import { colors } from '../theme/colors';
+import { ICON_SIZE } from '../theme/metrics';
 
 const Tab = createBottomTabNavigator();
 
@@ -29,7 +30,7 @@ export default function MainTabs() {
         tabBarInactiveTintColor: colors.text,
         tabBarIcon: ({ focused }) => {
           const [active, inactive] = TAB_ICONS[route.name];
-          return <Ionicons name={focused ? active : inactive} size={26} color={colors.text} />;
+          return <Ionicons name={focused ? active : inactive} size={ICON_SIZE.action} color={colors.text} />;
         },
       })}
     >

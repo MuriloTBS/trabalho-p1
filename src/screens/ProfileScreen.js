@@ -4,6 +4,7 @@ import PhotoGrid from '../components/PhotoGrid';
 import { currentUser } from '../data/users';
 import { myPosts } from '../data/posts';
 import { colors } from '../theme/colors';
+import { AVATAR_SIZE, RADIUS } from '../theme/metrics';
 
 const profilePhotos = myPosts.map((post) => ({ id: post.id, uri: post.image, post }));
 
@@ -22,7 +23,7 @@ export default function ProfileScreen({ navigation }) {
   const header = (
     <View style={styles.header}>
       <View style={styles.topRow}>
-        <Avatar uri={currentUser.avatar} size={80} />
+        <Avatar uri={currentUser.avatar} size={AVATAR_SIZE.profile} />
         <View style={styles.stats}>
           <Stat value={myPosts.length} label="publicações" />
           <Stat value={currentUser.followers} label="seguidores" />
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.inputBackground,
     borderWidth: 1,
     borderColor: colors.border,
-    borderRadius: 8,
+    borderRadius: RADIUS.medium,
     paddingVertical: 8,
     alignItems: 'center',
   },

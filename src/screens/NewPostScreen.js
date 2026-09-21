@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, StyleSheet, TextInput, View } from 'react-native';
+import PrimaryButton from '../components/PrimaryButton';
 import { colors } from '../theme/colors';
 import { imageUrl } from '../utils/image';
 
@@ -27,9 +28,7 @@ export default function NewPostScreen({ navigation }) {
         />
       </View>
 
-      <TouchableOpacity style={styles.button} onPress={handleShare}>
-        <Text style={styles.buttonText}>Compartilhar</Text>
-      </TouchableOpacity>
+      <PrimaryButton title="Compartilhar" onPress={handleShare} />
     </View>
   );
 }
@@ -54,15 +53,5 @@ const styles = StyleSheet.create({
   caption: {
     flex: 1,
     textAlignVertical: 'top',
-  },
-  button: {
-    backgroundColor: colors.primary,
-    borderRadius: 8,
-    padding: 12,
-    alignItems: 'center',
-  },
-  buttonText: {
-    color: '#fff',
-    fontWeight: '600',
   },
 });

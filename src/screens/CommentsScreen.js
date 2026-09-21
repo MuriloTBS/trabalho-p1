@@ -11,6 +11,9 @@ import {
 } from 'react-native';
 import { colors } from '../theme/colors';
 
+// Espaço do cabeçalho da stack, para o teclado não cobrir o campo de comentário no iOS
+const KEYBOARD_OFFSET = 90;
+
 // Tela 8: comentários de uma publicação, com campo para comentar
 export default function CommentsScreen({ route }) {
   const { post } = route.params;
@@ -29,7 +32,7 @@ export default function CommentsScreen({ route }) {
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-      keyboardVerticalOffset={90}
+      keyboardVerticalOffset={KEYBOARD_OFFSET}
     >
       <FlatList
         data={comments}

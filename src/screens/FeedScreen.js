@@ -6,6 +6,7 @@ import StoryBubble from '../components/StoryBubble';
 import { posts } from '../data/posts';
 import { stories } from '../data/stories';
 import { colors } from '../theme/colors';
+import { ICON_SIZE } from '../theme/metrics';
 
 // Tela 2: feed com stories no topo e lista de publicações
 export default function FeedScreen({ navigation }) {
@@ -26,8 +27,8 @@ export default function FeedScreen({ navigation }) {
       <View style={styles.header}>
         <Text style={styles.logo}>Instagram</Text>
         <View style={styles.headerIcons}>
-          <Ionicons name="heart-outline" size={26} color={colors.text} />
-          <Ionicons name="paper-plane-outline" size={26} color={colors.text} />
+          <Ionicons name="heart-outline" size={ICON_SIZE.action} color={colors.text} />
+          <Ionicons name="paper-plane-outline" size={ICON_SIZE.action} color={colors.text} />
         </View>
       </View>
 
