@@ -1,7 +1,26 @@
 import { imageUrl } from '../utils/image';
-import { users } from './users';
+import { currentUser, users } from './users';
 
 const [marina, lucas, cafe, julia, pedro, ana] = users;
+
+const MY_POST_CAPTIONS = [
+  'Primeiro dia de aula 📚',
+  'Café e código ☕',
+  'Projeto novo saindo do forno 🚀',
+  'Fim de semana de descanso 😴',
+  'Estudando React Native 📱',
+  'Bora pra próxima! 💪',
+];
+
+// Publicações do próprio usuário, exibidas na grade do perfil
+export const myPosts = MY_POST_CAPTIONS.map((caption, index) => ({
+  id: `mine-${index}`,
+  user: currentUser,
+  image: imageUrl(`meu-post-${index}`, 800),
+  likes: 20 + index * 7,
+  caption,
+  comments: [],
+}));
 
 // Publicações fictícias usadas no feed, na busca e no perfil
 export const posts = [

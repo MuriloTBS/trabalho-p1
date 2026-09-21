@@ -2,10 +2,10 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Avatar from '../components/Avatar';
 import PhotoGrid from '../components/PhotoGrid';
 import { currentUser } from '../data/users';
-import { posts } from '../data/posts';
+import { myPosts } from '../data/posts';
 import { colors } from '../theme/colors';
 
-const profilePhotos = posts.map((post) => ({ id: post.id, uri: post.image, post }));
+const profilePhotos = myPosts.map((post) => ({ id: post.id, uri: post.image, post }));
 
 // Número + rótulo (ex.: "6 publicações")
 function Stat({ value, label }) {
@@ -24,7 +24,7 @@ export default function ProfileScreen({ navigation }) {
       <View style={styles.topRow}>
         <Avatar uri={currentUser.avatar} size={80} />
         <View style={styles.stats}>
-          <Stat value={posts.length} label="publicações" />
+          <Stat value={myPosts.length} label="publicações" />
           <Stat value={currentUser.followers} label="seguidores" />
           <Stat value={currentUser.following} label="seguindo" />
         </View>
