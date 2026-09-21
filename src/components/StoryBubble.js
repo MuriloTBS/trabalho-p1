@@ -1,13 +1,19 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Avatar from './Avatar';
 import { colors } from '../theme/colors';
+import { AVATAR_SIZE } from '../theme/metrics';
 
 // Bolinha de story: avatar com anel colorido (exceto o story do próprio usuário)
 export default function StoryBubble({ story, onPress }) {
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
+    <TouchableOpacity
+      accessibilityRole="button"
+      accessibilityLabel={`Story de ${story.username}`}
+      style={styles.container}
+      onPress={onPress}
+    >
       <View style={[styles.ring, story.isOwn && styles.ringOwn]}>
-        <Avatar uri={story.avatar} size={60} />
+        <Avatar uri={story.avatar} size={AVATAR_SIZE.story} />
       </View>
       <Text style={styles.username} numberOfLines={1}>
         {story.username}

@@ -3,39 +3,53 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Avatar from './Avatar';
 import { colors } from '../theme/colors';
+import { AVATAR_SIZE, ICON_SIZE } from '../theme/metrics';
 
 // Cartão de uma publicação: cabeçalho, foto, ações, curtidas e legenda
 export default function PostCard({ post, onPressImage, onPressComments }) {
-  // Curtir é só visual: alterna o coração e soma 1 no contador
+  // O curtir é local e não persiste: o contador soma 1 sobre o valor original
   const [liked, setLiked] = useState(false);
   const likeCount = post.likes + (liked ? 1 : 0);
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Avatar uri={post.user.avatar} size={32} />
+        <Avatar uri={post.user.avatar} size={AVATAR_SIZE.post} />
         <Text style={styles.username}>{post.user.username}</Text>
-        <Ionicons name="ellipsis-horizontal" size={20} color={colors.text} />
+        <Ionicons name="ellipsis-horizontal" size={ICON_SIZE.menu} color={colors.text} />
       </View>
 
-      <TouchableOpacity activeOpacity={0.9} onPress={onPressImage}>
+      <TouchableOpacity
+        accessibilityRole="button"
+        accessibilityLabel="Abrir publicação"
+        activeOpacity={0.9}
+        onPress={onPressImage}
+      >
         <Image source={{ uri: post.image }} style={styles.image} />
       </TouchableOpacity>
 
       <View style={styles.actions}>
-        <TouchableOpacity onPress={() => setLiked((current) => !current)}>
+        <TouchableOpacity
+          accessibilityRole="button"
+          accessibilityLabel={liked ? 'Descurtir' : 'Curtir'}
+          onPress={() => setLiked((current) => !current)}
+        >
           <Ionicons
             name={liked ? 'heart' : 'heart-outline'}
-            size={28}
+            size={ICON_SIZE.like}
             color={liked ? colors.like : colors.text}
           />
         </TouchableOpacity>
-        <TouchableOpacity onPress={onPressComments}>
-          <Ionicons name="chatbubble-outline" size={26} color={colors.text} />
+        <TouchableOpacity
+          accessibilityRole="button"
+          accessibilityLabel="Comentar"
+          onPress={onPressComments}
+        >
+          <Ionicons name="chatbubble-outline" size={ICON_SIZE.action} color={colors.text} />
         </TouchableOpacity>
-        <Ionicons name="paper-plane-outline" size={26} color={colors.text} />
+        <Ionicons name="paper-plane-outline" size={ICON_SIZE.action} color={colors.text} />
         <View style={styles.spacer} />
-        <Ionicons name="bookmark-outline" size={26} color={colors.text} />
+        <Ionicons name="bookmark-outline" size={ICON_SIZE.action} color={colors.text} />
       </View>
 
       <View style={styles.footer}>

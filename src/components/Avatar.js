@@ -2,9 +2,10 @@ import { Image, StyleSheet } from 'react-native';
 import { colors } from '../theme/colors';
 
 // Foto de perfil redonda. `size` controla o tamanho em pixels.
-export default function Avatar({ uri, size = 40 }) {
+export default function Avatar({ uri, size = 40, label = 'Foto de perfil' }) {
   return (
     <Image
+      accessibilityLabel={label}
       source={{ uri }}
       style={[
         styles.avatar,
